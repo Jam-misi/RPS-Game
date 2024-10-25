@@ -1,0 +1,147 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 40px;
+    background-image: url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2lkZGthaXVqbmZmdHh0Zzlta2M1cTJjZDI3OGtvcDhkZ29rYzNwZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4Xg3a4DQCyPU6Jd5Zs/giphy.gif);
+    
+    transition: background-image 0.5s ease;
+    background-attachment: fixed;
+    background-size: cover;
+  }   
+
+h1 {
+    color: #ffffff;
+    font-family: "press start 2p","Consolas","sans-serif";
+    font-weight: 400;
+    font-size: 50px;
+    text-shadow: 5px 5px 8px rgb(0, 0, 0);
+    -webkit-text-stroke: 2px #0C1821;
+}
+
+p{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color:rgb(247, 247, 247);
+  font-size: 40px;
+  font-family: "Bebas Neue", sans-serif;
+  -webkit-text-stroke: 2px #0C1821;
+}
+
+.p{
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color:rgb(255, 255, 255);
+  font-size: 40px;
+  display: inline-flex;
+  margin: 0 20px;
+  -webkit-text-stroke: 2px #0C1821;
+}
+    
+
+.p1{
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color:rgb(255, 255, 255);
+  font-size: 40px;
+  display: inline-flex;
+  margin: 0 20px;
+  -webkit-text-stroke: 2px #0C1821;
+}
+
+.p2{
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color:rgb(255, 255, 255);
+  font-size: 40px;
+  display: inline-flex;
+  margin: 0 20px;
+  -webkit-text-stroke: 2px #0C1821;
+}
+
+.p3{
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color:rgb(255, 255, 255);
+  font-size: 40px;
+  display: inline-flex;
+  margin: 0 20px;
+  -webkit-text-stroke: 2px #0C1821;
+}
+
+input {
+    /* sets border width to 0 and border style to none */ 
+    border:0 none;
+}
+
+/* Container needed to position the button. Adjust the width as needed */
+.container {
+    position: relative;
+    width: 50%;
+  }
+  
+  /* Make the image responsive */
+  .container img {
+    width: 300px;
+    height: auto;
+    
+  }
+
+  .container1 {
+    position: relative;
+    width: 50%;
+  }
+  
+  /* Make the image responsive */
+  .container1 img {
+    width: 300px;
+    height: auto;
+  }
+
+  .container2 {
+    position: relative;
+    width: 50%;
+  }
+  
+  /* Make the image responsive */
+  .container2 img {
+    width: 300px;
+    height: auto;
+  }
+
+  .row {
+    display: flex;
+  }
+  
+  .column {
+    flex: 33.33%;
+    padding: 5px;
+  }
+
+  .choice {
+    font-size: 50px;
+    margin: 0 20px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+  .choice:hover {
+    transform: scale(1.5);
+}
+
+.results {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+
+.winner {
+  font-family: "press start 2p","Consolas","sans-serif";
+  font-weight: 400;
+  font-size: 50px;
+  text-shadow: 5px 5px 8px rgb(0, 0, 0);
+  -webkit-text-stroke: 2px #0C1821;
+  color: rgb(121, 194, 212);
+}

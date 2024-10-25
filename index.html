@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors with PyScript</title>
+
+    <!-- PyScript CSS -->
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+
+    <!-- PyScript JS -->
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+
+    <h1>Rock Paper Scissors Game</h1>
+
+    <p>First to 3 points wins!</p>
+
+    <div class="row">
+        <div class="container">
+            <div class="choice">
+                <input type="image" src="./images/rocky.png" onclick="playGame('Rock')" width="300" height="auto">
+            </div>        
+        </div>
+
+        <div class="container1">
+            <div class="choice">
+                <input type="image" src="./images/papery.png" onclick="playGame('Paper')" width="300" height="auto">       
+            </div>
+        </div>
+
+        <div class="container2">
+            <div class="choice">
+                <input type="image" src="./images/scissory.png" onclick="playGame('Scissors')" width="300" height="auto">
+            </div>
+        </div>
+    </div>
+
+    <div class="results">
+        <div class="p">
+            Player Score: <span id="playerScore">0</span>
+        </div>
+        <div class="p1">
+            Computer Score: <span id="computerScore">0</span>
+        </div>
+        <div class="p2">
+           Computer chose: <span id="computerChoice">None</span>
+        </div>
+        <div class="p3">
+            Result: <span id="gameResult">No game played yet</span>
+        </div>
+    </div>
+
+    <div class="winner" id="winner"></div>
+
+    <!-- PyScript code -->
+    <py-script>
+        import random
+
+        # Initialize scores
+        player_score = 0
+        computer_score = 0
+
+        # Function to determine the result of each round
+        def determine_winner(player_choice, computer_choice):
+            if player_choice == computer_choice:
+                return "draw"
+            elif (player_choice == "Rock" and computer_choice == "Scissors") or \
+                 (player_choice == "Paper" and computer_choice == "Rock") or \
+                 (player_choice == "Scissors" and computer_choice == "Paper"):
+                return "win"
+            else:
+                return "lose"
+
+        # Play the game function
+        def play_game(player_choice):
+            global player_score, computer_score
+            choices = ["Rock", "Paper", "Scissors"]
+            computer_choice = random.choice(choices)
+
+            # Update computer's choice in the HTML
+            Element("computerChoice").element.innerText = computer_choice
+
+            # Determine the winner
+            result = determine_winner(player_choice, computer_choice)
+            if result == "win":
+                player_score += 1
+                Element("gameResult").element.innerText = "You win this round!"
+                js.changeBackground("player")  # Call JavaScript to change background for player win
+            elif result == "lose":
+                computer_score += 1
+                Element("gameResult").element.innerText = "Computer wins this round!"
+                js.changeBackground("computer")  # Call JavaScript to change background for computer win
+            else:
+                Element("gameResult").element.innerText = "It's a draw!"
+                js.changeBackground("draw")  # Call JavaScript to change background for draw
+
+            # Update scores in the HTML
+            Element("playerScore").element.innerText = player_score
+            Element("computerScore").element.innerText = computer_score
+
+            # Check for game over
+            if player_score == 3:
+                Element("winner").element.innerText = "Congratulations! You won the game! - reload to restart the game"
+                reset_game()
+            elif computer_score == 3:
+                Element("winner").element.innerText = "Game over! The computer won the game! - reload to restart the game "
+                reset_game()
+
+        def reset_game():
+            global player_score, computer_score
+            player_score = 0
+            computer_score = 0
+            
+            # Reset UI after 3 seconds
+            js.window.setTimeout(lambda: reset_ui(), 3000)
+
+        def reset_ui():
+            Element("playerScore").element.innerText = "0"
+            Element("computerScore").element.innerText = "0"
+            Element("gameResult").element.innerText = "No game played yet"
+            Element("computerChoice").element.innerText = "None"
+            Element("winner").element.innerText = ""
+    </py-script>
+
+    <script>
+        // JavaScript function to change the background color based on the result
+        function changeBackground(result) {
+            if (result === "player") {
+                document.body.style.backgroundImage = "url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExanNsaDdhM3k2OWt3cGprZzhnczVnbTNlajE2NWo4Nnp1MmZzOTl0aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qOVZiGV5UxUOnz5IC5/giphy.gif)";  // Player wins
+            } else if (result === "computer") {
+                document.body.style.backgroundImage = "url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDNlNzdpbGw0emRyNjUwZHkyMHEwYmJlamQwYm8zZ3R4ejVmOWE2cSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rT7aSEp7KjVvMV7TJd/giphy.gif)";  // Computer wins
+            } else if (result === "draw") {
+                document.body.style.backgroundImage = "url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdm1uNDF1d2U3NjdxZDJwOGttOTNnZ2JwbzRwdTl4NWo1NGExYW81ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3ohrysKImgiyrEZJzq/giphy.gif)";   // It's a draw
+            }
+
+            // Reset background color after 1 second
+            setTimeout(function () {
+                document.body.style.backgroundImage = "url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2lkZGthaXVqbmZmdHh0Zzlta2M1cTJjZDI3OGtvcDhkZ29rYzNwZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4Xg3a4DQCyPU6Jd5Zs/giphy.gif)";
+            }, 1000);
+        }
+        
+        // JavaScript function to call the PyScript function
+        function playGame(playerChoice) {
+            pyscript.interpreter.globals.get("play_game")(playerChoice);
+        }
+    </script>
+
+</body>
+</html>

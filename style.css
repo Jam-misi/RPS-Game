@@ -26,6 +26,14 @@ p{
   -webkit-text-stroke: 2px #0C1821;
 }
 
+p1{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color:rgb(247, 247, 247);
+  font-size: 25px;
+  font-family: "Bebas Neue", sans-serif;
+  -webkit-text-stroke: 1px #0C1821;
+}
+
 .p{
   font-family: "Anton", sans-serif;
   font-weight: 400;
